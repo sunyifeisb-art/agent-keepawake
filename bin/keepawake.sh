@@ -39,6 +39,8 @@ is_awake_hours() {
   fi
   local hour
   hour="$(/bin/date +%H)"
+  # 白天 09:00~凌晨01:59 → 防睡眠（电脑保持唤醒）
+  # 凌晨 02:00~08:59     → 正常休眠（电脑可睡眠）
   [ "$hour" -ge 9 ] || [ "$hour" -lt 2 ]
 }
 
@@ -123,14 +125,14 @@ while true; do
   if is_awake_hours; then
     if [ "$STATE" != "awake" ]; then
       STATE="awake"
-      log "enter awake hours (09:00-01:59)"
+      log "enter awake hours (day 09:00~night 01:59, keep awake)"
     fi
     disable_lid_sleep
     start_caffeinate
   else
     if [ "$STATE" != "sleep" ]; then
       STATE="sleep"
-      log "enter sleep hours (02:00-08:59)"
+      log "enter sleep hours (early morning 02:00-08:59, allow sleep)"
     fi
     stop_caffeinate
     enable_lid_sleep
