@@ -3,8 +3,9 @@
 # 电源检测 + caffeinate + 时段调度
 # 自动加载 bin/ 下的组件模块（openclaw.sh / cc.sh 等）
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)" || exit 1
+PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)" || exit 1
+readonly SCRIPT_DIR PROJECT_DIR
 LOG_DIR="$PROJECT_DIR/logs"
 STATE_DIR="$PROJECT_DIR/state"
 FORCE_AWAKE_FLAG="$STATE_DIR/force-awake"
