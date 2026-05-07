@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+config/runtime.env
+dist/
+.tmp-install/
+
+# 运行时文件
+logs/
+state/
