@@ -48,7 +48,7 @@ start_caffeinate() {
   if [ -n "$CAFFEINATE_PID" ] && kill -0 "$CAFFEINATE_PID" 2>/dev/null; then
     return
   fi
-  /usr/bin/caffeinate -s -i -d -w $$ >/dev/null 2>&1 &
+  /usr/bin/caffeinate -s -i -w $$ >/dev/null 2>&1 &
   CAFFEINATE_PID=$!
   log "caffeinate started (pid=$CAFFEINATE_PID)"
 }
